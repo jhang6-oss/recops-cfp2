@@ -8,7 +8,7 @@
 body {
     background-color: #2b1d12;
     /* Pointing directly to your local wood grain image asset */
-    background-image: url('public/desk-background.jpg'); 
+    background-image: url('./public/desk-background.jpg'); 
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
