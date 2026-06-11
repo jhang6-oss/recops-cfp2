@@ -1,0 +1,251 @@
+/* Reset and Base Environment */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #2b1d12;
+    /* Pointing directly to your local wood grain image asset */
+    background-image: url('public/desk-background.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    font-family: 'Special Elite', monospace;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+}
+
+.workspace {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    padding: 20px;
+    width: 100%;
+}
+
+/* Postcard Container: Fixed Aspect-Fit Layering */
+.postcard-canvas {
+    position: relative;
+    width: 960px;
+    height: 540px;
+    background: #fdfaf2;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6), 0 4px 12px rgba(0,0,0,0.4);
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.bg-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: fill; 
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Realistic Perforated Stamp Layout Container */
+.stamp-zone {
+    position: absolute;
+    top: 35px;
+    right: 45px;
+    z-index: 5;
+}
+
+.real-postage-stamp {
+    width: 95px;
+    height: 115px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.35);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Forces the downloaded image asset to fit perfectly in the zone */
+.default-stamp-img, .uploaded-logo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    border-radius: 2px;
+}
+
+.uploaded-logo-img {
+    background: #fff;
+    object-fit: contain;
+}
+
+/* Interactive Column Structure (Locked to Right Half) */
+.postcard-right-content {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 440px; 
+    height: 540px;
+    z-index: 3;
+    padding: 40px 45px 40px 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+#pitch-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 135px; 
+}
+
+.input-row {
+    display: flex;
+    gap: 10px;
+}
+
+input[type="text"], input[type="email"], textarea {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px dashed #8b7d6b;
+    border-radius: 4px;
+    padding: 6px 10px;
+    font-family: 'Special Elite', monospace;
+    font-size: 12px;
+    color: #2b1d12;
+    outline: none;
+}
+
+input:focus, textarea:focus {
+    background: rgba(255, 255, 255, 0.95);
+    border-style: solid;
+}
+
+textarea {
+    height: 110px;
+    resize: none;
+    line-height: 1.4;
+}
+
+.file-row {
+    align-items: center;
+}
+
+.custom-file-upload {
+    font-size: 11px;
+    color: #614e3b;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.submit-btn {
+    background: #2b1d12;
+    color: #fdfaf2;
+    border: none;
+    padding: 10px;
+    font-family: 'Special Elite', monospace;
+    font-size: 13px;
+    cursor: pointer;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.submit-btn:hover {
+    background: #4a3423;
+}
+
+/* AI Handwriting Elements Layer */
+#ai-output {
+    margin-top: 175px; 
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.pitch-tag {
+    color: #1a426e; 
+    font-family: 'Caveat', cursive;
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.handwritten-text {
+    font-family: 'Caveat', cursive;
+    color: #1c1c1c;
+    font-size: 24px;
+    line-height: 1.35;
+    word-wrap: break-word;
+    padding-left: 5px;
+    white-space: pre-line;
+}
+
+.signature-line {
+    font-family: 'Caveat', cursive;
+    color: #1c1c1c;
+    font-size: 26px;
+    text-align: right;
+    margin-top: 10px;
+    padding-right: 10px;
+}
+
+/* Inline AI Verified Gold Seal Position */
+.ai-verified-badge {
+    align-self: flex-start;
+    margin-top: 15px;
+    margin-left: 5px;
+    background: #dfb142;
+    color: #fff;
+    font-size: 11px;
+    padding: 4px 10px 4px 6px;
+    border-radius: 2px;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    box-shadow: 1px 2px 4px rgba(0,0,0,0.15);
+    letter-spacing: 0.5px;
+}
+
+.badge-icon {
+    background: #fff;
+    color: #dfb142;
+    border-radius: 50%;
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    text-align: center;
+    line-height: 14px;
+    font-size: 9px;
+    margin-right: 4px;
+}
+
+/* Action Area Controls */
+.action-bar {
+    margin-top: 10px;
+}
+
+.download-btn {
+    background: #dfb142;
+    color: #2b1d12;
+    border: none;
+    font-family: 'Special Elite', monospace;
+    font-weight: bold;
+    font-size: 15px;
+    padding: 12px 24px;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.download-btn:hover {
+    transform: translateY(-2px);
+}
+
+.hidden {
+    display: none !important;
+}

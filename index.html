@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RecOps Con '26 - Call For Pitches</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Oswald:wght@600&family=Special+Elite&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body>
+
+    <div class="workspace">
+        <div class="postcard-canvas" id="postcard">
+            <img src="public/postcard-bg.jpg" alt="Chicago Postcard" class="bg-layer">
+            
+            <div class="stamp-zone">
+                <div id="stamp-preview" class="real-postage-stamp">
+                    <img src="public/default-stamp.jpg" class="default-stamp-img" alt="Chicago 26 Postage Stamp">
+                </div>
+            </div>
+
+            <div class="postcard-right-content">
+                
+                <form id="pitch-form" onsubmit="handlePitchSubmit(event)">
+                    <div class="input-row">
+                        <input type="text" id="firstName" placeholder="First Name" required>
+                        <input type="text" id="lastName" placeholder="Last Name" required>
+                    </div>
+                    <div class="input-row">
+                        <input type="email" id="email" placeholder="Email Address" required>
+                    </div>
+                    <div class="input-row">
+                        <input type="text" id="title" placeholder="Job Title" required>
+                        <input type="text" id="company" placeholder="Company Name" required>
+                    </div>
+                    <div class="input-row file-row">
+                        <label for="logo-upload" class="custom-file-upload">
+                            📎 Swap Stamp with Custom Company Logo
+                        </label>
+                        <input type="file" id="logo-upload" accept="image/*" onchange="previewLogo(event)">
+                    </div>
+                    <div class="textarea-container">
+                        <textarea id="pitch" placeholder="Drop your pitch brain dump here... What metric or process did you overhaul?" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Mail Pitch</button>
+                </form>
+
+                <div id="ai-output" class="hidden">
+                    <div class="pitch-tag">Pitch:</div>
+                    <p class="handwritten-text" id="summary-text"></p>
+                    <div class="signature-line" id="author-signature"></div>
+                    <div class="ai-verified-badge">
+                        <span class="badge-icon">✔</span> AI Verified
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="action-bar hidden" id="action-bar">
+            <button onclick="downloadPostcard()" class="download-btn">📥 Download Shareable Postcard</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
